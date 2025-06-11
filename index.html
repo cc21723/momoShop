@@ -71,6 +71,12 @@
         img {
             width: 150px;
         }
+
+        .discountMsg {
+            color: #d63384;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
     </style>
 </head>
 
@@ -117,6 +123,7 @@
             <td><input data-price="150" class="quantity" type="number" value="0"></td>
             <td class="subtotal"></td>
         </tr>
+        <div class="discountMsg"></div>
         <tr>
             <td>合計</td>
             <td class="totalAmount" colspan="5"></td>
@@ -168,9 +175,12 @@
                     total += Number($(this).text()) || 0;
                 });
 
-                // 如果超過1000打8折
+                // 如果超過500打8折
                 if (total >= 500) {
                     total *= 0.8;
+                    $('.discountMsg').text('已達500元，享8折優惠！');
+                } else {
+                    $('.discountMsg').text(''); // 沒有折扣就清除訊息
                 }
 
                 $('.totalAmount').text(Math.round(total));
